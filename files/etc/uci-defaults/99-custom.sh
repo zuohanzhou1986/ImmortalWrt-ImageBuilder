@@ -60,10 +60,12 @@ esac
 
 # 3. 配置网络
 if [ "$count" -eq 1 ]; then
-    # 单网口设备，强制使用静态 IP
+    # 单网口设备，强制使用静态 IP 及指定网关
     uci set network.lan.proto='static'
     uci set network.lan.ipaddr='192.168.100.1'
     uci set network.lan.netmask='255.255.255.0'
+    uci set network.lan.gateway='192.168.100.4'
+    uci set network.lan.dns='223.5.5.5'
     uci commit network
 elif [ "$count" -gt 1 ]; then
     # 多网口设备配置
